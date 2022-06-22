@@ -1,13 +1,9 @@
 package dao
 
-import (
-	"codecloud/models/domain"
-)
-
 type UserDao struct {
 }
 
-func (u *UserDao) findName(user domain.User) domain.User {
+func (u *UserDao) FindName(userID string) string {
 
-	return user
+	return ""
 }

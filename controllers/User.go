@@ -26,6 +26,7 @@ func (u *UserLoginController) Post() {
 	password := u.GetString("password")
 	fmt.Println(name)
 	fmt.Println(password)
+
 }
 
 // UserFindNameController 获取用户名
@@ -34,5 +35,6 @@ type UserFindNameController struct {
 }
 
 func (u *UserFindNameController) Get() {
-
+	name := u.GetString("name")
+	UserService.FindName(name)
 }
