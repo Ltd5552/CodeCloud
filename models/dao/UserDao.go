@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"CodeCloud/models/domain"
+	"codecloud/models/domain"
 )
 
 type UserDao struct {
