@@ -10,7 +10,7 @@ func init() {
 	beego.Router("/user/login", &controllers.UserLoginController{})
 	beego.Router("/user/findName", &controllers.UserFindNameController{})
 	beego.Router("/code/run", &controllers.CodeRunController{})
-	beego.Router("/code/allHistory", &controllers.CodeAllHistoryController{})
-	beego.Router("/code/oneDetail", &controllers.CodeDetailController{})
+	beego.Router("/code/history", &controllers.CodeAllHistoryController{})
+	beego.Router("/code/detail", &controllers.CodeDetailController{})
 	beego.Router("/code/runAgain", &controllers.CodeRunAgainController{})
 }
