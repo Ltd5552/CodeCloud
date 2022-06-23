@@ -14,7 +14,7 @@ type CodeRunController struct {
 	beego.Controller
 }
 
-// Post  /code/run请求
+// Post  /code/run
 func (c *CodeRunController) Post() {
 
 }
@@ -24,7 +24,7 @@ type CodeAllHistoryController struct {
 	beego.Controller
 }
 
-// Get /code/allHistoryController
+// Get /code/history
 func (c *CodeAllHistoryController) Get() {
 
 }
@@ -34,12 +34,12 @@ type CodeDetailController struct {
 	beego.Controller
 }
 
-// Get /code/oneDetail
+// Get /code/detail
 func (c *CodeDetailController) Get() {
 
 }
 
-// Delete /code/oneDetail
+// Delete /code/detail
 func (c *CodeDetailController) Delete() {
 
 }

@@ -20,6 +20,7 @@ func (u *UserLoginController) Get() {
 	u.TplName = "valid.html"
 }
 
+// Post /user/RegisterOrLogin
 func (u *UserLoginController) Post() {
 	u.TplName = "valid.html"
 	name := u.GetString("name")
@@ -34,6 +35,7 @@ type UserFindNameController struct {
 	beego.Controller
 }
 
+// Get /user/findName
 func (u *UserFindNameController) Get() {
 	name := u.GetString("name")
 	UserService.FindName(name)
