@@ -2,7 +2,6 @@ package service
 
 import (
 	"codecloud/models/dao"
-	"errors"
 )
 
 type UserService struct {
@@ -20,8 +19,19 @@ func (u *UserService) FindName(userId string) string {
 
 func (u *UserService) Save(name string, password string) error {
 	err := userDao.Save(name, password)
-	if err == nil {
-		return errors.New("保存失败")
+	if err != nil {
+		return err
 	}
 	return nil
+}
+
+func (u *UserService) CheckAccount(name string, password string) (string, bool) {
+	id, pd := userDao.CheckAccount(name)
+	//没有用户
+	if pd == "" {
+		return id, false
+	} else if pd == password {
+		return id, true
+	}
+	return id, false
 }

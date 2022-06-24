@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"codecloud/models/domain"
+	"codecloud/domain"
 	"codecloud/models/service"
 	beego "github.com/beego/beego/v2/server/web"
 )

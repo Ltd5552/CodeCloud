@@ -39,11 +39,31 @@ func (u *UserDao) FindName(userID string) string {
 	}
 	var name string
 	for query.Next() {
-		err := query.Scan(name)
+		err := query.Scan(&name)
 		if err != nil {
 			fmt.Println("Scan failed,err:", err)
 			return ""
 		}
 	}
 	return name
+}
+
+func (u *UserDao) CheckAccount(name string) (string, string) {
+	var password string
+	var id string
+	sqlStr := "SELECT uid,password FROM User WHERE name = ?"
+	query, err := db.Query(sqlStr, name)
+	if err != nil {
+		fmt.Println("query failed,err:", err)
+		return "", ""
+	}
+	for query.Next() {
+		err := query.Scan(&id, &password)
+		if err != nil {
+			fmt.Println("Scan failed,err:", err)
+			return "", ""
+		}
+	}
+	return id, password
+
 }
