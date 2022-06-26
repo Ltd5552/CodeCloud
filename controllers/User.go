@@ -1,14 +1,12 @@
 package controllers
 
 import (
-	"codecloud/domain"
 	"codecloud/models/service"
 	"fmt"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
 var UserService service.UserService
-var user domain.User
 
 // UserLoginController 登录注册请求
 type UserLoginController struct {

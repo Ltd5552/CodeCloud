@@ -1,14 +1,12 @@
 package controllers
 
 import (
-	"codecloud/domain"
 	"codecloud/models/service"
 	"codecloud/utils"
 	"fmt"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
-var code domain.Code
 var codeService service.CodeService
 
 // CodeRunController 代码运行控制器
