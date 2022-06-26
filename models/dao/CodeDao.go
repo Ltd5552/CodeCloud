@@ -1,7 +1,7 @@
 package dao
 
 import (
-	domain2 "codecloud/domain"
+	"codecloud/domain"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -30,18 +30,18 @@ func (c *CodeDao) Save(cid string, uid string, code string, result string, time 
 }
 
 // GetAll get /code/history
-func (c *CodeDao) GetAll() ([]domain2.List, error) {
+func (c *CodeDao) GetAll(uid string) ([]domain.List, error) {
 
-	var Lists []domain2.List
+	var Lists []domain.List
 
-	sqlStr := "SELECT cid,time FROM Code"
-	query, err := db.Query(sqlStr)
+	sqlStr := "SELECT cid,time FROM Code WHERE uid = ?"
+	query, err := db.Query(sqlStr, uid)
 	if err != nil {
 		return Lists, err
 	}
 
 	for query.Next() {
-		var list domain2.List
+		var list domain.List
 		err := query.Scan(&list.Cid, &list.Time)
 		if err != nil {
 			return Lists, err
@@ -52,8 +52,8 @@ func (c *CodeDao) GetAll() ([]domain2.List, error) {
 }
 
 // GetDetail get /code/detail
-func (c *CodeDao) GetDetail(cid string) (domain2.Code, error) {
-	var code domain2.Code
+func (c *CodeDao) GetDetail(cid string) (domain.Code, error) {
+	var code domain.Code
 
 	sqlStr := "SELECT * FROM Code WHERE cid = ?"
 	query, err := db.Query(sqlStr, cid)
