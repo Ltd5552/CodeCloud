@@ -1,0 +1,73 @@
+<!--html直接引用直接引用vue和和element-ui的方法的方法-->
+<!--代码如下所示：-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/history.css">
+    <script src="../static/js/history.js"></script>
+    <title>历史记录</title>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-container>
+            <el-header id="header1" style="position: relative; left: -750px ">
+                <el-button id="edit" type="primary" plain class="header1ele">编辑代码</el-button>
+                <el-button id="delete" type="danger" plain>删除记录</el-button>
+                <label id="type">&nbsp;&nbsp;代码的语言为：Python；运行的时间为：&nbsp;&nbsp;</label>
+                <div class="header1ele" id="usernameShow">
+                    <span>欢迎回来，admin</span>
+                </div>
+                <br>
+
+
+            </el-header>
+
+            <el-main>
+                <label id="info">&nbsp;&nbsp;提交的代码：&nbsp;&nbsp;</label>
+                <div class="Code" id="inputCode">
+                    <textarea id="input1" cols="90" rows="15"></textarea>
+                </div>
+                <div class="Code">
+                    <label id="result">&nbsp;&nbsp;运行结果：&nbsp;&nbsp;</label>
+                    <div class="tmp1">
+                        <div id="tmp2">
+                            <label id="resultInfo">111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>11</label>
+                        </div>
+                        <div id="tmp3">
+<!--                            <label id="resultInfo2">111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>11</label>-->
+                        </div>
+                    </div>
+                </div>
+            </el-main>
+        </el-container>
+    </el-container>
+    <style>
+        .el-header {
+            background-color: #B3C0D1;
+            color: #333;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            color: #333;
+        }
+    </style>
+
+
+</div>
+
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return { visible: false }
+        }
+    })
+</script>
+</html>

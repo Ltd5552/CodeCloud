@@ -1,0 +1,69 @@
+<!--html直接引用直接引用vue和和element-ui的方法的方法-->
+<!--代码如下所示：-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="app">
+    <br>
+    <el-select v-model="selectedValue" placeholder="请选择性别">
+        <el-option label="男" value="male"></el-option>
+        <el-option label="女" value="female"></el-option>
+    </el-select>
+    <el-button round @click="visible = true">圆角按钮</el-button>
+    <br>
+    <el-dialog :visible.sync="visible" title="Hello world">
+        <p>Try Element</p>
+    </el-dialog>
+    <br>
+    <el-switch v-model="value1" active-text="按月付费" inactive-text="按年付费">
+    </el-switch>
+    <el-switch style="display: block" v-model="value2" active-color="#13ce66" inactive-color="#ff4949"
+               active-text="按月付费" inactive-text="按年付费">
+    </el-switch>
+    <br>
+    <el-time-picker is-range v-model="value1" range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间"
+                    placeholder="选择时间范围">
+    </el-time-picker>
+    <el-time-picker is-range arrow-control v-model="value2" range-separator="至" start-placeholder="开始时间"
+                    end-placeholder="结束时间" placeholder="选择时间范围">
+    </el-time-picker>
+    <br>
+    <el-progress type="circle" :percentage="0"></el-progress>
+    <el-progress type="circle" :percentage="25"></el-progress>
+    <el-progress type="circle" :percentage="100" status="success"></el-progress>
+    <el-progress type="circle" :percentage="70" status="warning"></el-progress>
+    <el-progress type="circle" :percentage="50" status="exception"></el-progress>
+    <br>
+    <el-row>
+        <el-button icon="el-icon-search" circle></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+        <el-button type="success" icon="el-icon-check" circle></el-button>
+        <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+    </el-row>
+    <br>
+    <el-steps :active="1" finish-status="success">
+        <el-step title="已付款"></el-step>
+        <el-step title="退款中"></el-step>
+        <el-step title="已退款"></el-step>
+        <el-step title="待结算"></el-step>
+        <el-step title="已结算"></el-step>
+    </el-steps>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return { visible: false }
+        }
+    })
+</script>
+</html>
