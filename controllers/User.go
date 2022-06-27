@@ -16,13 +16,13 @@ type UserLoginController struct {
 // Get /user/RegisterOrLogin
 func (u *UserLoginController) Get() {
 	//请求路径 /user/login获取的页面
-	u.TplName = "valid.html"
+	u.TplName = "runner.html"
 }
 
 // Post /user/RegisterOrLogin
 func (u *UserLoginController) Post() {
 	//下一步请求的地址
-	u.TplName = "valid.html"
+	u.TplName = "runner.html"
 
 	//获取请求参数
 	name := u.GetString("username")
@@ -43,7 +43,7 @@ func (u *UserLoginController) Post() {
 			res.UserID = userID
 			res.Flag = 1
 			res.Msg = ""
-			err := u.SetSession("user", "")
+			err := u.SetSession("user", "ltd")
 			if err != nil {
 				fmt.Println("Set session failed:", err)
 			}

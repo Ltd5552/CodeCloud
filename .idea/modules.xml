@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../../something important/Study/大二下/数据库系统/实验3/project/.idea/Cinema.iml" filepath="$PROJECT_DIR$/../../../something important/Study/大二下/数据库系统/实验3/project/.idea/Cinema.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/CodeCloud.iml" filepath="$PROJECT_DIR$/.idea/CodeCloud.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../goland/project/src/beego_learn/.idea/beego_learn.iml" filepath="$PROJECT_DIR$/../../../goland/project/src/beego_learn/.idea/beego_learn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CodeCloud.iml" filepath="$PROJECT_DIR$/CodeCloud.iml" />
     </modules>
   </component>
 </project>
