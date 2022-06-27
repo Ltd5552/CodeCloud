@@ -14,6 +14,10 @@ type CodeRunController struct {
 	beego.Controller
 }
 
+func (c *CodeRunController) Get() {
+	c.TplName = "runner.html"
+}
+
 // Post  /code/run
 func (c *CodeRunController) Post() {
 	//获取参数
@@ -93,7 +97,6 @@ func (c *CodeDetailController) Get() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
 }
 
 // Delete /code/detail

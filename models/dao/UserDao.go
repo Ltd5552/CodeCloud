@@ -1,29 +1,23 @@
 package dao
 
 import (
-	"codecloud/utils"
-	"database/sql"
 	"fmt"
 )
 
 type UserDao struct {
 }
 
-func (u *UserDao) Save(name string, password string) error {
-	uid := utils.RandStr(8)
+func (u *UserDao) Save(uid string, name string, password string) error {
 	sqlStr := "INSERT INTO User(uid,name,password) VALUE(?,?,?)"
 	stmt, err := db.Prepare(sqlStr)
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
-	defer func(stmt *sql.Stmt) {
-		err := stmt.Close()
-		if err != nil {
-			fmt.Println("close err:", err)
-		}
-	}(stmt)
+	defer stmt.Close()
 	_, err = stmt.Exec(uid, name, password)
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	return nil

@@ -10,8 +10,9 @@ import (
 var db *sql.DB
 
 // 初始化数据库的函数
-func initDB() (err error) {
+func init() {
 	// DSN:Data Source Name
+	var err error
 	user, _ := beego.AppConfig.String("username")
 	password, _ := beego.AppConfig.String("password")
 	host, _ := beego.AppConfig.String("host")
@@ -22,12 +23,12 @@ func initDB() (err error) {
 	// 这里不要使用:=由于是给全局变量db赋值，然后在main函数中使用全局变量db
 	db, err = sql.Open("mysql", datasource)
 	if err != nil {
-		return err
+		fmt.Println("初始化失败")
 	}
 	// 尝试与数据库建立连接（这里会校验dsn内容是否正确）
 	err = db.Ping()
 	if err != nil {
-		return err
+		fmt.Println("初始化失败")
 	}
-	return nil
+	fmt.Println("初始化成功")
 }

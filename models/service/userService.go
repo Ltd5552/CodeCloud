@@ -10,15 +10,11 @@ type UserService struct {
 var userDao dao.UserDao
 
 func (u *UserService) FindName(userId string) string {
-	name := userDao.FindName(userId)
-	if name != "" {
-		return name
-	}
-	return "null"
+	return userDao.FindName(userId)
 }
 
-func (u *UserService) Save(name string, password string) error {
-	err := userDao.Save(name, password)
+func (u *UserService) Save(uid string, name string, password string) error {
+	err := userDao.Save(uid, name, password)
 	if err != nil {
 		return err
 	}
