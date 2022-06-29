@@ -1,6 +1,6 @@
 package domain
 
 type List struct {
-	Cid  string
-	Time string
+	CodeID  string
+	RunTime string
 }

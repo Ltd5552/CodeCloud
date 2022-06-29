@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <script src="../static/js/jquery-1.11.0.min.js"></script>
+<!--    <script src="../static/js/jquery-1.11.0.min.js"></script>-->
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/runner.css">
     <script src="../static/js/runner.js"></script>
     <title>运行程序</title>
@@ -22,7 +23,9 @@
                     <template slot="title" id="history-title"><i class="el-icon-message"></i>历史记录</template>
                     <el-menu-item-group id="history_group">
                         <el-menu-item index="1-1" class="history_item" codeID="cid110" >
-                            <a href="http://localhost/code/history?userID=IAmUserID&codeID=IAmCodeID">2022.06.21-08:30</a></el-menu-item>
+                            <a href="http://localhost/code/detail?codeID=">2022.06.21-08:30</a></el-menu-item>
+
+                        <el-menu-item class="history_item" index="1-0" codeID=1651651> <a href="http://localhost/code/detail?&codeID=1651651"></a></el-menu-item>
                         <el-menu-item index="1-2" class="history_item" codeID="cid110">2022.06.20-08:30</el-menu-item>
                         <el-menu-item index="1-2" class="history_item" codeID="cid110">2022.06.20-08:30</el-menu-item>
                         <el-menu-item index="1-2" class="history_item" codeID="cid110">2022.06.20-08:30</el-menu-item>
@@ -61,7 +64,7 @@
             </div>
             <div class="Code">
                 <label id="result">&nbsp;&nbsp;运行结果：&nbsp;&nbsp;</label>
-                <label id="resultInfo">111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>1111<br>11</label>
+                <label id="resultInfo"></label>
             </div>
         </el-main>
     </el-container>

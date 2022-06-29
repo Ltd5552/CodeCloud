@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"codecloud/domain"
 	"codecloud/models/service"
 	"codecloud/utils"
 	"fmt"
@@ -8,12 +9,14 @@ import (
 )
 
 var codeService service.CodeService
+var apiService service.ApiService
 
 // CodeRunController 代码运行控制器
 type CodeRunController struct {
 	beego.Controller
 }
 
+// Get  /code/run
 func (c *CodeRunController) Get() {
 	c.TplName = "runner.html"
 }
@@ -25,28 +28,20 @@ func (c *CodeRunController) Post() {
 	Type := c.GetString("type")
 	uid := c.GetString("userID")
 	runTime := c.GetString("runTime")
+	//随机cid
 	cid := utils.RandStr(7)
 
-	//定义结果变量
-	var result string
-
-	//进行核心运行
+	var res domain.Res
 	//运行go的docker
-	if Type == "golang" {
-		codeService.Save(cid, uid, code, result, runTime, Type)
+	if Type == "Golang" {
+		res = apiService.Golang(code, res)
+		codeService.Save(cid, uid, code, res.Result, res.Errors, runTime, Type)
 		//运行python的docker
-	} else if Type == "python" {
-		codeService.Save(cid, uid, code, result, runTime, Type)
-	} else {
-		result = "请求错误"
+	} else if Type == "Python" {
+		res = apiService.Python(code, res)
+		codeService.Save(cid, uid, code, res.Result, res.Errors, runTime, Type)
 	}
-
 	//响应参数传递
-	type response struct {
-		Result string
-	}
-	var res response
-	res.Result = result
 	c.Data["json"] = res
 	err := c.ServeJSON()
 	if err != nil {
@@ -63,11 +58,17 @@ type CodeAllHistoryController struct {
 // Get /code/history
 func (c *CodeAllHistoryController) Get() {
 	//获取参数
+	type response struct {
+		Lists []domain.List
+	}
 	uid := c.GetString("userID")
-
-	lists := codeService.GetList(uid)
-
-	c.Data["json"] = lists
+	var res response
+	res.Lists = codeService.GetList(uid)
+	//for _, i := range res.Lists {
+	//	fmt.Println(i)
+	//}
+	//fmt.Println(res.lists)
+	c.Data["json"] = res
 
 	err := c.ServeJSON()
 	if err != nil {
@@ -82,6 +83,9 @@ type CodeDetailController struct {
 
 // Get /code/detail
 func (c *CodeDetailController) Get() {
+	c.TplName = "history.html"
+}
+func (c *CodeDetailController) Post() {
 	cid := c.GetString("codeID")
 	detail := codeService.GetDetail(cid)
 
@@ -102,7 +106,22 @@ func (c *CodeDetailController) Get() {
 // Delete /code/detail
 func (c *CodeDetailController) Delete() {
 	cid := c.GetString("codeID")
-	codeService.DeleteOne(cid)
+	fmt.Println("cid =", cid)
+	type response struct {
+		Flag bool
+	}
+	var res response
+	if cid != "" {
+		res.Flag = codeService.DeleteOne(cid)
+	} else {
+		res.Flag = false
+	}
+	c.Data["json"] = res
+	err := c.ServeJSON()
+	if err != nil {
+		return
+	}
+
 }
 
 // CodeRunAgainController CodeRunAgain 代码再次运行

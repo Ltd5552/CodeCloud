@@ -72,7 +72,7 @@ $(function () {
             // $.delay(1)
             $(this).html('已有账号？现在登录！')
             $(this).attr('va',0)
-            $('#btn_sub').html('注册')
+            $('#btn_sub').html('注册并登录')
             $('#username').prop('placeholder','8-16位字符')
             $('#password').prop('placeholder','8-16位字符')
             $("#username").css('border', '')

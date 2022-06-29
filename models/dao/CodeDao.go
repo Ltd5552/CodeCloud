@@ -10,8 +10,8 @@ import (
 type CodeDao struct {
 }
 
-func (c *CodeDao) Save(cid string, uid string, code string, result string, time string, Type string) error {
-	sqlStr := "INSERT INTO Code(cid, uid, code, result, time, type) VALUE(?,?,?,?,?,?)"
+func (c *CodeDao) Save(cid string, uid string, code string, result string, error string, time string, Type string) error {
+	sqlStr := "INSERT INTO Code(cid, uid, code, result, time, type,errors) VALUE(?,?,?,?,?,?,?)"
 	stmt, err := db.Prepare(sqlStr)
 	if err != nil {
 		return err
@@ -22,7 +22,7 @@ func (c *CodeDao) Save(cid string, uid string, code string, result string, time 
 			fmt.Println("close err:", err)
 		}
 	}(stmt)
-	_, err = stmt.Exec(cid, uid, code, result, time, Type)
+	_, err = stmt.Exec(cid, uid, code, result, time, Type, error)
 	if err != nil {
 		return err
 	}
@@ -42,12 +42,13 @@ func (c *CodeDao) GetAll(uid string) ([]domain.List, error) {
 
 	for query.Next() {
 		var list domain.List
-		err := query.Scan(&list.Cid, &list.Time)
+		err := query.Scan(&list.CodeID, &list.RunTime)
 		if err != nil {
 			return Lists, err
 		}
 		Lists = append(Lists, list)
 	}
+
 	return Lists, nil
 }
 
@@ -62,7 +63,7 @@ func (c *CodeDao) GetDetail(cid string) (domain.Code, error) {
 	}
 
 	for query.Next() {
-		err := query.Scan(&code.CodeID, &code.UserID, &code.Code, &code.Time, &code.Type)
+		err := query.Scan(&code.CodeID, &code.UserID, &code.Code, &code.Result, &code.Time, &code.Type, &code.Errors)
 		if err != nil {
 			fmt.Println("Scan failed,err:", err)
 			return code, err

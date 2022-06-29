@@ -5,6 +5,7 @@ type Code struct {
 	UserID string
 	Code   string
 	Result string
+	Errors string
 	Time   string
 	Type   string
 }
