@@ -14,18 +14,18 @@ $(function () {
         $("#type").html("&nbsp;&nbsp;代码的语言为："+data.Type+"；运行的时间为："+data.RunTime+"&nbsp;&nbsp;")
     });
     $("#edit").click(function () {
-        location.href = "http://localhost/code/run?userID="+userID+"&codeID="+codeID;
+        location.href = "http://localhost:8088/code/run?userID="+userID+"&codeID="+codeID;
     });
     $("#delete").click(function (){
         $.ajax({
-            url: "http://localhost/code/detail?codeID="+codeID+"",
+            url: "http://localhost:8088/code/detail?codeID="+codeID+"",
             type: 'DELETE',
             // data:{'codeID':codeID},
             success: function(data) {
                 var flag = data.Flag
                 if (flag){
                     alert("删除成功")
-                    location.href = "http://localhost/code/run?userID="+userID+"&codeID=";
+                    location.href = "http://localhost:8088/code/run?userID="+userID+"&codeID=";
                 }
                 else {
                     alert("删除失败，请稍后尝试")

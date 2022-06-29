@@ -56,7 +56,7 @@ $(function () {
                 if(data.Flag){
                // if(true){
                     //登录成功，跳转到执行代码界面
-                    location.href="http://localhost/code/run?userID="+data.UserID+"&codeID=none";
+                    location.href="http://localhost:8088/code/run?userID="+data.UserID+"&codeID=none";
 
                 }else{
                     // //登录失败，给出提示信息

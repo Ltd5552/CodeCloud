@@ -4,7 +4,7 @@ var codeID = location.search.match(new RegExp("codeID=(.*)"))[1];
 // alert(codeID)
 $(function () {
 
-    $.get("http://localhost/user/findName", {'userID': userID}, function (data) {
+    $.get("http://localhost:8088/user/findName", {'userID': userID}, function (data) {
         //{uid:1,name:'李四'}
         var msg = "欢迎回来，" + data.UserName;
         $("#span_username").html(msg);
@@ -12,16 +12,16 @@ $(function () {
     // });
     if(codeID!="none")
     {
-        $.get("http://localhost/code/runAgain", {'codeID': codeID}, function (data) {
+        $.get("http://localhost:8088/code/runAgain", {'codeID': codeID}, function (data) {
             $("#input1").html(data.Code);
         });
     }
 
-    $.get("http://localhost/code/history", {'userID': userID}, function (data) {
+    $.get("http://localhost:8088/code/history", {'userID': userID}, function (data) {
         var his = '';
         for(var i = 0;i < data.Lists.length;i++){
             var one = data.Lists[i];
-            var item = '<el-menu-item class="history_item" index="1-'+ i+1 +'" codeID='+one.CodeID+'> <a href="http://localhost/code/detail?codeID='+one.CodeID+'&userID='+userID+'">'+one.RunTime+'</a></el-menu-item><br>';
+            var item = '<el-menu-item class="history_item" index="1-'+ i+1 +'" codeID='+one.CodeID+'> <a href="http://localhost:8088/code/detail?codeID='+one.CodeID+'&userID='+userID+'">'+one.RunTime+'</a></el-menu-item><br>';
             his += item;
         }
         $("#history_group").html(his)
